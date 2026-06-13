@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Arbor Labs</title>
+  <style>
+    :root {
+      --bg: #1a1a1a;
+      --ink: #f4f4f4;
+      --muted: #8f8f8f;
+      --rule: #2c2c2c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      background: var(--bg);
+    }
+
+    body {
+      color: var(--ink);
+      font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem 0;
+    }
+
+    .mark {
+      max-width: 220px;
+      width: 60%;
+      height: auto;
+      display: block;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem 1.5rem 3rem;
+    }
+
+    .wordmark {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      text-transform: uppercase;
+    }
+
+    .wordmark .labs {
+      display: block;
+      font-size: 0.55em;
+      letter-spacing: 0.35em;
+      font-weight: 700;
+      margin-top: 0.3em;
+    }
+
+    .tagline {
+      margin-top: 1.25rem;
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 32em;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="mark" src="assets/tree-mark.png" alt="Dark Arbor Labs tree-and-circuit mark">
+  </header>
+
+  <main>
+    <h1 class="wordmark">Dark Arbor<span class="labs">Labs</span></h1>
+    <p class="tagline">Rooted. Connected. Built.</p>
+    <p class="intro">Dark Arbor Labs designs and builds mobile applications and data systems &mdash; the kind that work quietly and stay out of the way.</p>
+  </main>
+
+  <footer>
+    &copy; 2026 Dark Arbor Labs LLC &middot; <a href="mailto:support@darkarborlabs.com">support@darkarborlabs.com</a>
+  </footer>
+</body>
+</html>
