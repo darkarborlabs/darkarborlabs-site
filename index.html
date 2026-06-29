@@ -168,10 +168,21 @@
       margin-bottom: 2.5rem;
     }
 
-    /* ── Services grid ── */
-    .grid-3 {
+    /* ── Capabilities ── */
+    .cap-group { margin-bottom: 2.25rem; }
+    .cap-group:last-child { margin-bottom: 0; }
+
+    .cap-group-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #4a4a4a;
+      margin-bottom: 1rem;
+    }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
 
@@ -180,6 +191,11 @@
       border: 1px solid var(--rule);
       border-radius: 6px;
       padding: 2rem 1.75rem;
+    }
+
+    .card.advisory {
+      background: transparent;
+      border-color: #383838;
     }
 
     .card h3 {
@@ -193,6 +209,10 @@
       color: var(--muted);
       font-size: 0.93rem;
       line-height: 1.65;
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
 
     /* ── Active initiatives ── */
@@ -318,32 +338,35 @@
     <section id="services">
       <p class="section-label">What we do</p>
       <h2>Capabilities</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Mobile App Development</h3>
-          <p>Native iOS and Android applications built for performance and long-term maintainability — from architecture through App Store deployment.</p>
-        </div>
-        <div class="card">
-          <h3>Software Engineering</h3>
-          <p>Full-stack web applications, backend systems, and APIs. We build software meant to run in production, not just pass a demo.</p>
-        </div>
-        <div class="card">
-          <h3>Data &amp; AI Solutions</h3>
-          <p>Modern data architecture, analytics engineering, and applied AI — grounded in two decades of enterprise data practice. We design systems that turn raw organizational data into clear, usable intelligence.</p>
-        </div>
-        <div class="card">
-          <h3>Technical Consulting</h3>
-          <p>Architecture reviews, build-vs-buy decisions, team assessments, and hands-on implementation guidance. Senior-level expertise applied directly to your problem, without the overhead of a large firm.</p>
-        </div>
-        <div class="card">
-          <h3>API &amp; Integrations</h3>
-          <p>Third-party APIs, internal services, and data sources connected into coherent, maintainable systems. We handle the plumbing so your product teams don't have to.</p>
-        </div>
-        <div class="card">
-          <h3>Product Strategy</h3>
-          <p>Scope definition, delivery sequencing, and technical roadmap validation. We help founders and operators make better build decisions before committing significant time or budget.</p>
+
+      <div class="cap-group">
+        <div class="cap-group-label">Product Development</div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Mobile App Development</h3>
+            <p>Native iOS and Android, end to end. We own the full process — architecture, engineering, and App Store deployment — which means no gaps between decisions and what actually ships.</p>
+          </div>
+          <div class="card">
+            <h3>Software Engineering</h3>
+            <p>Backend systems, web applications, and APIs built to production standards from the start. Maintainable code, clear architecture, nothing you'll need to rethink in a year.</p>
+          </div>
         </div>
       </div>
+
+      <div class="cap-group">
+        <div class="cap-group-label">Advisory &amp; Consulting</div>
+        <div class="grid-2">
+          <div class="card advisory">
+            <h3>Data &amp; AI Solutions</h3>
+            <p>Data strategy, analytics architecture, and applied AI — grounded in two decades of enterprise data practice. We work across the full stack from pipeline to model to dashboard, and we've seen enough implementations to know what actually holds up.</p>
+          </div>
+          <div class="card advisory">
+            <h3>Technology Advisory</h3>
+            <p>Independent technical counsel for executives and founders. Architecture decisions, vendor selection, build-vs-buy tradeoffs, team structure — the kind of direct, unconflicted advice that's harder to get when a large firm is behind the engagement.</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Active Initiatives -->
