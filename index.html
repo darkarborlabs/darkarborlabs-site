@@ -221,14 +221,116 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 26, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
+    }
+
+    .nav-brand {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    section {
+      scroll-margin-top: 60px;
+    }
+
+    /* ── About ── */
+    .about-body {
+      max-width: 44em;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-body p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .leadership {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+      margin-top: 2.25rem;
+    }
+
+    .leadership .name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .leadership .title {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       section { padding: 3.5rem 0; }
       .hero   { padding: 4rem 0 3.5rem; }
+      .nav-links { gap: 1.1rem; }
     }
   </style>
 </head>
 <body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">Dark Arbor Labs</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#initiatives">Initiatives</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="container">
 
@@ -241,6 +343,24 @@
         An independent software engineering studio based in Los Angeles, California — building mobile apps, data infrastructure, and bespoke software solutions for businesses ready to grow.
       </p>
     </header>
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">Who we are</p>
+      <h2>About the Studio</h2>
+      <div class="about-body">
+        <p>
+          Dark Arbor Labs LLC is an independent software development studio focused on engineering robust technical solutions, multi-platform applications, and backend infrastructure.
+        </p>
+        <p>
+          Leveraging over two decades of experience in enterprise engineering, our operational approach emphasizes systemic scale, fluid interface mechanics, and strict architectural integrity. We partner directly with emerging startups and established organizations to build technical foundations from the ground up, translate abstract business requirements into performant systems, and isolate clean signals from complex organizational data footprints.
+        </p>
+        <div class="leadership">
+          <div class="name">Eric Higgins</div>
+          <div class="title">Founder &amp; Managing Member</div>
+        </div>
+      </div>
+    </section>
 
     <!-- Services -->
     <section id="services">
