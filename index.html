@@ -3,114 +3,323 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dark Arbor Labs</title>
+  <title>Dark Arbor Labs | Mobile Apps & Software Solutions</title>
+  <meta name="description" content="Dark Arbor Labs LLC — an independent software engineering studio in Los Angeles specializing in mobile app development, data infrastructure, and technical consulting.">
+  <meta property="og:title" content="Dark Arbor Labs">
+  <meta property="og:description" content="Mobile apps and software solutions. Rooted. Connected. Built.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.darkarborlabs.com">
   <style>
     :root {
-      --bg: #1a1a1a;
-      --ink: #f4f4f4;
-      --muted: #8f8f8f;
-      --rule: #2c2c2c;
+      --bg:       #1a1a1a;
+      --bg-card:  #222222;
+      --ink:      #f4f4f4;
+      --muted:    #8f8f8f;
+      --rule:     #2c2c2c;
+      --accent:   #c8c8c8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html, body {
-      background: var(--bg);
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      background: var(--bg);
       color: var(--ink);
       font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      line-height: 1.6;
     }
 
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2.5rem 1rem 0;
+    /* ── Layout shell ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
-    .mark {
-      max-width: 220px;
-      width: 60%;
+    section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── Fade-in animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease both;
+    }
+    .fade-up:nth-child(2) { animation-delay: 0.1s; }
+    .fade-up:nth-child(3) { animation-delay: 0.2s; }
+    .fade-up:nth-child(4) { animation-delay: 0.3s; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 6rem 0 5rem;
+      border-top: none;
+    }
+
+    .hero .mark {
+      width: clamp(100px, 18vw, 160px);
       height: auto;
       display: block;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1rem 1.5rem 3rem;
+      margin: 0 auto 2rem;
     }
 
     .wordmark {
       font-weight: 800;
       letter-spacing: 0.04em;
       line-height: 1.05;
-      font-size: clamp(2.2rem, 8vw, 4rem);
+      font-size: clamp(2.2rem, 7vw, 3.6rem);
       text-transform: uppercase;
     }
 
     .wordmark .labs {
       display: block;
-      font-size: 0.55em;
-      letter-spacing: 0.35em;
+      font-size: 0.5em;
+      letter-spacing: 0.4em;
       font-weight: 700;
       margin-top: 0.3em;
+      color: var(--accent);
     }
 
     .tagline {
       margin-top: 1.25rem;
       color: var(--muted);
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    .intro {
+    .hero-body {
       margin-top: 2rem;
       color: var(--muted);
-      font-size: 1rem;
-      max-width: 32em;
-      line-height: 1.6;
+      font-size: 1.05rem;
+      max-width: 34em;
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    /* ── Section headings ── */
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Services grid ── */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    /* ── Active initiatives ── */
+    .initiative-block {
+      max-width: 42em;
+    }
+
+    .initiative-block p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 100px;
+      padding: 0.3em 0.9em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-item .label {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      font-size: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-item a:hover {
+      border-bottom-color: var(--ink);
+    }
+
+    /* ── Footer ── */
     footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 0;
       text-align: center;
-      padding: 1.5rem;
+    }
+
+    .legal-notice {
       font-size: 0.8rem;
       color: var(--muted);
-      border-top: 1px solid var(--rule);
+      margin-bottom: 0.5rem;
     }
 
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
+    .copyright {
+      font-size: 0.78rem;
+      color: #555;
+      letter-spacing: 0.05em;
     }
 
-    footer a:hover {
-      color: var(--ink);
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 0; }
+      .hero   { padding: 4rem 0 3.5rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-    <img class="mark" src="assets/tree-mark.png" alt="Dark Arbor Labs tree-and-circuit mark">
-    <h1 class="wordmark">Dark Arbor<span class="labs">Labs</span></h1>
-    <p class="tagline">Rooted. Connected. Built.</p>
-  </main>
 
+  <div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+      <img class="mark fade-up" src="assets/tree-mark.png" alt="Dark Arbor Labs logo">
+      <h1 class="wordmark fade-up">Dark Arbor<span class="labs">Labs</span></h1>
+      <p class="tagline fade-up">Rooted. Connected. Built.</p>
+      <p class="hero-body fade-up">
+        An independent software engineering studio based in Los Angeles, California — building mobile apps, data infrastructure, and bespoke software solutions for businesses ready to grow.
+      </p>
+    </header>
+
+    <!-- Services -->
+    <section id="services">
+      <p class="section-label">What we do</p>
+      <h2>Capabilities</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Mobile App Development</h3>
+          <p>Native iOS and Android applications engineered for performance, stability, and long-term scalability. From concept through App Store deployment.</p>
+        </div>
+        <div class="card">
+          <h3>Software Solutions</h3>
+          <p>Full-stack web applications, backend systems, and cloud-native architectures tailored to your workflow — built to last, not just to ship.</p>
+        </div>
+        <div class="card">
+          <h3>Data Infrastructure</h3>
+          <p>Custom data pipelines, analytics instrumentation, and reporting systems that surface the signals buried in your organization's raw data.</p>
+        </div>
+        <div class="card">
+          <h3>Technical Consulting</h3>
+          <p>Architecture reviews, roadmap validation, and hands-on implementation guidance from engineers with over two decades of enterprise experience.</p>
+        </div>
+        <div class="card">
+          <h3>API & Integrations</h3>
+          <p>Connecting your stack — third-party APIs, internal services, and data sources wired together into cohesive, maintainable systems.</p>
+        </div>
+        <div class="card">
+          <h3>Product Strategy</h3>
+          <p>Translating business goals into clear technical plans. We help founders and operators define scope, sequence delivery, and avoid costly pivots.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active initiatives -->
+    <section id="initiatives">
+      <p class="section-label">Current work</p>
+      <h2>Active Initiatives</h2>
+      <div class="initiative-block">
+        <span class="status-badge">In development</span>
+        <p>
+          Dark Arbor Labs is currently in private development on a suite of consumer and enterprise mobile applications — spanning personal finance management, productivity tooling, and analytics dashboards — targeting deployment to the Apple App Store and Google Play Store in late 2026.
+        </p>
+        <p style="margin-top: 1.25rem;">
+          Client engagements are ongoing across mobile application development and data infrastructure projects. We work with a limited number of clients at a time to ensure focused, high-quality delivery.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Get in touch</p>
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="label">Email</div>
+          <a href="mailto:support@darkarborlabs.com">support@darkarborlabs.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">Phone</div>
+          <a href="tel:+12136919055">213.691.9055</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">Location</div>
+          <span>Los Angeles, California</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
   <footer>
-    &copy; 2026 Dark Arbor Labs LLC &middot; <a href="mailto:support@darkarborlabs.com">support@darkarborlabs.com</a>
+    <div class="container">
+      <p class="legal-notice">
+        Dark Arbor Labs LLC is a registered limited liability company in the State of California, providing software engineering and technology solutions.
+      </p>
+      <p class="copyright">&copy; 2026 Dark Arbor Labs LLC &middot; All rights reserved.</p>
+    </div>
   </footer>
+
 </body>
 </html>
