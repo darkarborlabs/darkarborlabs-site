@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dark Arbor Labs | Mobile Apps & Software Solutions</title>
-  <meta name="description" content="Dark Arbor Labs LLC — an independent software engineering studio in Los Angeles specializing in mobile app development, data infrastructure, and technical consulting.">
+  <meta name="description" content="Dark Arbor Labs LLC — an independent software engineering and consulting firm in Los Angeles specializing in mobile app development, data and AI solutions, and technical consulting.">
   <meta property="og:title" content="Dark Arbor Labs">
-  <meta property="og:description" content="Mobile apps and software solutions. Rooted. Connected. Built.">
+  <meta property="og:description" content="Mobile apps, software products, and technical consulting. Rooted. Connected. Built.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.darkarborlabs.com">
   <style>
@@ -50,12 +50,59 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .fade-up {
-      animation: fadeUp 0.7s ease both;
-    }
+    .fade-up { animation: fadeUp 0.7s ease both; }
     .fade-up:nth-child(2) { animation-delay: 0.1s; }
     .fade-up:nth-child(3) { animation-delay: 0.2s; }
     .fade-up:nth-child(4) { animation-delay: 0.3s; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 26, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 54px;
+    }
+
+    .nav-brand {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    section { scroll-margin-top: 60px; }
 
     /* ── Hero ── */
     .hero {
@@ -172,6 +219,20 @@
       margin-bottom: 1.5rem;
     }
 
+    /* ── About ── */
+    .about-body {
+      max-width: 44em;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-body p:last-of-type { margin-bottom: 0; }
+
     /* ── Contact ── */
     .contact-grid {
       display: grid;
@@ -198,9 +259,7 @@
       transition: border-color 0.2s, color 0.2s;
     }
 
-    .contact-item a:hover {
-      border-bottom-color: var(--ink);
-    }
+    .contact-item a:hover { border-bottom-color: var(--ink); }
 
     /* ── Footer ── */
     footer {
@@ -221,95 +280,6 @@
       letter-spacing: 0.05em;
     }
 
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(26, 26, 26, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 54px;
-    }
-
-    .nav-brand {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.75rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--ink);
-    }
-
-    section {
-      scroll-margin-top: 60px;
-    }
-
-    /* ── About ── */
-    .about-body {
-      max-width: 44em;
-    }
-
-    .about-body p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 1.25rem;
-    }
-
-    .about-body p:last-of-type {
-      margin-bottom: 0;
-    }
-
-    .leadership {
-      border-left: 2px solid var(--accent);
-      padding-left: 1.25rem;
-      margin-top: 2.25rem;
-    }
-
-    .leadership .name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .leadership .title {
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
     /* ── Responsive ── */
     @media (max-width: 600px) {
       section { padding: 3.5rem 0; }
@@ -324,9 +294,9 @@
     <div class="nav-inner">
       <a href="#" class="nav-brand">Dark Arbor Labs</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#initiatives">Initiatives</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -340,27 +310,9 @@
       <h1 class="wordmark fade-up">Dark Arbor<span class="labs">Labs</span></h1>
       <p class="tagline fade-up">Rooted. Connected. Built.</p>
       <p class="hero-body fade-up">
-        An independent software engineering studio based in Los Angeles, California — building mobile apps, data infrastructure, and bespoke software solutions for businesses ready to grow.
+        A Los Angeles-based software engineering and consulting firm — building mobile apps and software products, and providing senior technical expertise to organizations that need it.
       </p>
     </header>
-
-    <!-- About -->
-    <section id="about">
-      <p class="section-label">Who we are</p>
-      <h2>About the Studio</h2>
-      <div class="about-body">
-        <p>
-          Dark Arbor Labs LLC is an independent software development studio focused on engineering robust technical solutions, multi-platform applications, and backend infrastructure.
-        </p>
-        <p>
-          Leveraging over two decades of experience in enterprise engineering, our operational approach emphasizes systemic scale, fluid interface mechanics, and strict architectural integrity. We partner directly with emerging startups and established organizations to build technical foundations from the ground up, translate abstract business requirements into performant systems, and isolate clean signals from complex organizational data footprints.
-        </p>
-        <div class="leadership">
-          <div class="name">Eric Higgins</div>
-          <div class="title">Founder &amp; Managing Member</div>
-        </div>
-      </div>
-    </section>
 
     <!-- Services -->
     <section id="services">
@@ -369,42 +321,59 @@
       <div class="grid-3">
         <div class="card">
           <h3>Mobile App Development</h3>
-          <p>Native iOS and Android applications engineered for performance, stability, and long-term scalability. From concept through App Store deployment.</p>
+          <p>Native iOS and Android applications built for performance and long-term maintainability — from architecture through App Store deployment.</p>
         </div>
         <div class="card">
-          <h3>Software Solutions</h3>
-          <p>Full-stack web applications, backend systems, and cloud-native architectures tailored to your workflow — built to last, not just to ship.</p>
+          <h3>Software Engineering</h3>
+          <p>Full-stack web applications, backend systems, and APIs. We build software meant to run in production, not just pass a demo.</p>
         </div>
         <div class="card">
-          <h3>Data Infrastructure</h3>
-          <p>Custom data pipelines, analytics instrumentation, and reporting systems that surface the signals buried in your organization's raw data.</p>
+          <h3>Data &amp; AI Solutions</h3>
+          <p>Modern data architecture, analytics engineering, and applied AI — grounded in two decades of enterprise data practice. We design systems that turn raw organizational data into clear, usable intelligence.</p>
         </div>
         <div class="card">
           <h3>Technical Consulting</h3>
-          <p>Architecture reviews, roadmap validation, and hands-on implementation guidance from engineers with over two decades of enterprise experience.</p>
+          <p>Architecture reviews, build-vs-buy decisions, team assessments, and hands-on implementation guidance. Senior-level expertise applied directly to your problem, without the overhead of a large firm.</p>
         </div>
         <div class="card">
-          <h3>API & Integrations</h3>
-          <p>Connecting your stack — third-party APIs, internal services, and data sources wired together into cohesive, maintainable systems.</p>
+          <h3>API &amp; Integrations</h3>
+          <p>Third-party APIs, internal services, and data sources connected into coherent, maintainable systems. We handle the plumbing so your product teams don't have to.</p>
         </div>
         <div class="card">
           <h3>Product Strategy</h3>
-          <p>Translating business goals into clear technical plans. We help founders and operators define scope, sequence delivery, and avoid costly pivots.</p>
+          <p>Scope definition, delivery sequencing, and technical roadmap validation. We help founders and operators make better build decisions before committing significant time or budget.</p>
         </div>
       </div>
     </section>
 
-    <!-- Active initiatives -->
+    <!-- Active Initiatives -->
     <section id="initiatives">
       <p class="section-label">Current work</p>
       <h2>Active Initiatives</h2>
       <div class="initiative-block">
         <span class="status-badge">In development</span>
         <p>
-          Dark Arbor Labs is currently in private development on a suite of consumer and enterprise mobile applications — spanning personal finance management, productivity tooling, and analytics dashboards — targeting deployment to the Apple App Store and Google Play Store in late 2026.
+          Dark Arbor Labs is in active development on a suite of consumer and enterprise mobile applications — targeting deployment to the Apple App Store and Google Play Store in late 2026.
         </p>
         <p style="margin-top: 1.25rem;">
-          Client engagements are ongoing across mobile application development and data infrastructure projects. We work with a limited number of clients at a time to ensure focused, high-quality delivery.
+          On the consulting side, we work with a small number of clients at any given time across mobile development, data infrastructure, and technical strategy — keeping engagements focused and accountable.
+        </p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <p class="section-label">Who we are</p>
+      <h2>About the Studio</h2>
+      <div class="about-body">
+        <p>
+          Dark Arbor Labs LLC is an independent software engineering and technology consulting firm. We operate in two modes: building software products for direct market distribution, and taking on consulting engagements for clients who need senior technical depth without the structure — or cost — of a large firm.
+        </p>
+        <p>
+          The studio is founded and led by a technology executive with 20 years of enterprise consulting experience, most recently leading the data and AI practice at a national consultancy in Los Angeles. That background informs how we approach every project — with a focus on what's actually useful over what's technically impressive, and a clear-eyed view of where complexity is warranted versus where it gets in the way.
+        </p>
+        <p>
+          We're based in Los Angeles and work with clients locally and remotely.
         </p>
       </div>
     </section>
@@ -435,7 +404,7 @@
   <footer>
     <div class="container">
       <p class="legal-notice">
-        Dark Arbor Labs LLC is a registered limited liability company in the State of California, providing software engineering and technology solutions.
+        Dark Arbor Labs LLC is a registered limited liability company in the State of California, providing software engineering and technology consulting services.
       </p>
       <p class="copyright">&copy; 2026 Dark Arbor Labs LLC &middot; All rights reserved.</p>
     </div>
