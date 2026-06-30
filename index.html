@@ -15,8 +15,9 @@
       --bg-card:  #222222;
       --ink:      #f4f4f4;
       --muted:    #8f8f8f;
-      --rule:     #2c2c2c;
+      --rule:     #2a2a2a;
       --accent:   #c8c8c8;
+      --mono:     ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +27,10 @@
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,255,255,0.04), transparent),
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0) 0 0/28px 28px,
+        var(--bg);
       color: var(--ink);
       font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
       line-height: 1.6;
@@ -51,9 +55,7 @@
     }
 
     .fade-up { animation: fadeUp 0.7s ease both; }
-    .fade-up:nth-child(2) { animation-delay: 0.1s; }
-    .fade-up:nth-child(3) { animation-delay: 0.2s; }
-    .fade-up:nth-child(4) { animation-delay: 0.3s; }
+    .hero-body.fade-up { animation-delay: 0.15s; }
 
     /* ── Nav ── */
     nav {
@@ -83,6 +85,7 @@
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -92,73 +95,146 @@
     }
 
     .nav-links a {
+      position: relative;
       font-size: 0.75rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
     section { scroll-margin-top: 60px; }
 
     /* ── Hero ── */
     .hero {
-      text-align: center;
-      padding: 6rem 0 5rem;
+      padding: 7rem 0 5.5rem;
       border-top: none;
     }
 
+    .hero-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4.5rem;
+      align-items: center;
+    }
+
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      padding-right: 4.5rem;
+      border-right: 1px solid var(--rule);
+    }
+
     .hero .mark {
-      width: clamp(100px, 18vw, 160px);
+      width: clamp(120px, 11vw, 180px);
       height: auto;
       display: block;
-      margin: 0 auto 2rem;
+      flex-shrink: 0;
     }
 
     .wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.08;
+    }
+
+    .wordmark span {
       font-weight: 800;
-      letter-spacing: 0.04em;
-      line-height: 1.05;
-      font-size: clamp(2.2rem, 7vw, 3.6rem);
+      letter-spacing: 0.03em;
+      font-size: clamp(1.7rem, 3.2vw, 2.6rem);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .wordmark .labs {
-      display: block;
-      font-size: 0.5em;
-      letter-spacing: 0.4em;
-      font-weight: 700;
-      margin-top: 0.3em;
+      letter-spacing: 0.25em;
       color: var(--accent);
+      font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+      margin-top: 0.2em;
     }
 
     .tagline {
-      margin-top: 1.25rem;
+      margin-top: 0.6em;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.78rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .hero-body {
-      margin-top: 2rem;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 34em;
-      margin-left: auto;
-      margin-right: auto;
+      color: #c4c4c8;
+      font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+      font-weight: 300;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      max-width: 32em;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+      }
+      .hero-brand {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-right: 0;
+        padding-bottom: 2.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+      }
+      .wordmark { align-items: center; }
+      .wordmark span { white-space: normal; }
+      .tagline { white-space: normal; }
+      .hero-body { max-width: none; margin: 0 auto; }
     }
 
     /* ── Section headings ── */
     .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       font-size: 0.75rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 0.5rem;
+    }
+
+    .section-label::before {
+      content: attr(data-index);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0;
+      color: #555;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
     }
 
     h2 {
@@ -187,12 +263,36 @@
     }
 
     .card {
+      position: relative;
       background: var(--bg-card);
       border: 1px solid var(--rule);
       border-radius: 6px;
       padding: 2rem 1.75rem;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
     }
 
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #3a3a3a;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
 
     .card h3 {
       font-size: 1.05rem;
@@ -223,16 +323,34 @@
     }
 
     .status-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       background: var(--bg-card);
       border: 1px solid var(--rule);
       border-radius: 100px;
-      padding: 0.3em 0.9em;
+      padding: 0.3em 0.9em 0.3em 0.7em;
       color: var(--accent);
       margin-bottom: 1.5rem;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7fd99a;
+      box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.5); }
+      70%  { box-shadow: 0 0 0 6px rgba(127, 217, 154, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0); }
     }
 
     /* ── About ── */
@@ -255,6 +373,19 @@
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
       margin-top: 0.5rem;
+    }
+
+    .contact-item {
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-left: 2px solid var(--rule);
+      border-radius: 4px;
+      transition: border-left-color 0.25s ease;
+    }
+
+    .contact-item:hover {
+      border-left-color: var(--ink);
     }
 
     .contact-item .label {
@@ -301,6 +432,13 @@
     @media (max-width: 600px) {
       section { padding: 3.5rem 0; }
       .hero   { padding: 4rem 0 3.5rem; }
+      .nav-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0.85rem 1.5rem;
+        row-gap: 0.6rem;
+      }
+      .nav-brand { flex: 1 1 100%; }
       .nav-links { gap: 1.1rem; }
     }
   </style>
@@ -323,17 +461,27 @@
 
     <!-- Hero -->
     <header class="hero">
-      <img class="mark fade-up" src="assets/tree-mark.png" alt="Dark Arbor Labs logo">
-      <h1 class="wordmark fade-up">Dark Arbor<span class="labs">Labs</span></h1>
-      <p class="tagline fade-up">Rooted. Connected. Built.</p>
-      <p class="hero-body fade-up">
-        A Los Angeles-based software engineering and consulting firm — building mobile apps and software products, and providing senior technical expertise to organizations that need it.
-      </p>
+      <div class="hero-grid">
+        <div class="hero-brand fade-up">
+          <img class="mark" src="assets/tree-mark.png" alt="Dark Arbor Labs logo">
+          <div>
+            <h1 class="wordmark">
+              <span>Dark</span>
+              <span>Arbor</span>
+              <span class="labs">Labs</span>
+            </h1>
+            <p class="tagline">Rooted. Connected. Built.</p>
+          </div>
+        </div>
+        <p class="hero-body fade-up">
+          A Los Angeles-based software engineering and consulting firm operating as a dual-engine product studio and consultancy. We build, deploy, and monetize our own portfolio of premium technology products while partnering with select organizations to engineer outcome-based, high-ROI technology solutions.
+        </p>
+      </div>
     </header>
 
     <!-- Services -->
     <section id="services">
-      <p class="section-label">What we do</p>
+      <p class="section-label" data-index="01">What we do</p>
       <h2>Capabilities</h2>
 
       <div class="cap-group">
@@ -368,7 +516,7 @@
 
     <!-- Active Initiatives -->
     <section id="initiatives">
-      <p class="section-label">Current work</p>
+      <p class="section-label" data-index="02">Current work</p>
       <h2>Active Initiatives</h2>
       <div class="initiative-block">
         <span class="status-badge">In development</span>
@@ -383,7 +531,7 @@
 
     <!-- About -->
     <section id="about">
-      <p class="section-label">Who we are</p>
+      <p class="section-label" data-index="03">Who we are</p>
       <h2>About the Studio</h2>
       <div class="about-body">
         <p>
@@ -400,7 +548,7 @@
 
     <!-- Contact -->
     <section id="contact">
-      <p class="section-label">Get in touch</p>
+      <p class="section-label" data-index="04">Get in touch</p>
       <h2>Contact</h2>
       <div class="contact-grid">
         <div class="contact-item">
