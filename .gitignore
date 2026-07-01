@@ -1,0 +1,41 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+*.log
+
+# Local Claude settings (keep .claude/settings.json in git if shared, but ignore local overrides)
+.claude/settings.local.json
+
+# Secrets and credentials
+*.key
+*.pem
+*.p12
+*.pfx
+*.psd
+config/secrets.json
