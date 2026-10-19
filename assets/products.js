@@ -24,7 +24,7 @@ window.DAL_PRODUCTS = [
     "slug": "clutterwise",
     "name": "Clutterwise",
     "tagline": "Find what you already own.",
-    "summary": "Scan your drawers, closets and bins once, then search for anything by what it is or where it lives. An iPhone app that never makes you remember where you put it.",
+    "summary": "Organize your home, pack for a move, or manage a storage unit. Scan items with AI or type them in, label boxes with QR codes, and find anything later.",
     "category": "Productivity",
     "icon": "assets/products/clutterwise/icon.webp",
     "url": "products/clutterwise/",

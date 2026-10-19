@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clutterwise: Find What You Already Own | Dark Arbor Labs</title>
-  <meta name="description" content="Clutterwise is an iPhone app that remembers where everything is. Scan drawers, closets and bins once, then search for anything later. Now in development.">
+  <meta name="description" content="Clutterwise is an iPhone app for organizing your home, packing for a move and managing storage. Scan items with AI or type them in, label boxes with QR codes, and find anything later. Now in development.">
   <meta property="og:title" content="Clutterwise: Find what you already own.">
-  <meta property="og:description" content="Scan your drawers, closets and bins once, then search for anything by what it is or where it lives.">
+  <meta property="og:description" content="Organize your home, pack for a move, or run a storage unit. Scan with AI or type it in, label containers with QR codes, and find anything later.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.darkarborlabs.com/products/clutterwise/">
   <meta property="og:image" content="https://www.darkarborlabs.com/assets/products/clutterwise/icon-512.png">
@@ -18,43 +18,95 @@
   <script src="../../assets/products.js" defer></script>
   <script src="../../assets/site.js" defer></script>
   <style>
-    /* Illustrative search mock (no screenshots yet) */
+    /* Illustrations (no screenshots yet). Plain HTML/CSS, labelled as illustrations. */
     .cw-mock {
       background: #1f231e;
       border: 1px solid #33402f;
       border-radius: 16px;
       padding: 1.25rem;
       box-shadow: 0 0 80px -20px color-mix(in srgb, var(--product) 30%, transparent), 0 20px 40px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
     }
-    .cw-search {
+    .cw-bar {
       display: flex;
       align-items: center;
       gap: 0.7rem;
       background: #151815;
       border: 1px solid #3a4636;
       border-radius: 10px;
-      padding: 0.8rem 1rem;
-      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
       color: #dfe8da;
     }
-    .cw-search svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--product); }
-    .cw-results { list-style: none; margin-top: 0.9rem; display: grid; gap: 0.6rem; }
-    .cw-result {
+    .cw-bar svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--product); }
+    .cw-bar .dim { color: #7d8a78; }
+    .cw-list { list-style: none; margin-top: 0.85rem; display: grid; gap: 0.55rem; }
+    .cw-row {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 0.15rem 1rem;
+      gap: 0.1rem 1rem;
       align-items: center;
       background: #242a22;
       border: 1px solid #2f382c;
       border-radius: 10px;
-      padding: 0.85rem 1rem;
+      padding: 0.75rem 1rem;
     }
-    .cw-result:first-child { border-color: color-mix(in srgb, var(--product) 55%, #2f382c); }
-    .cw-name { font-weight: 700; font-size: 0.95rem; }
-    .cw-where { grid-column: 1; color: var(--muted); font-size: 0.8rem; }
-    .cw-score { grid-row: 1 / span 2; grid-column: 2; font-family: var(--mono); font-size: 0.78rem; color: var(--product); }
-    .cw-caption { margin-top: 0.9rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6a7566; text-align: center; }
+    .cw-row.hit { border-color: color-mix(in srgb, var(--product) 55%, #2f382c); }
+    .cw-name { font-weight: 700; font-size: 0.92rem; }
+    .cw-sub { grid-column: 1; color: var(--muted); font-size: 0.78rem; }
+    .cw-score { grid-row: 1 / span 2; grid-column: 2; font-family: var(--mono); font-size: 0.78rem; color: var(--product); text-align: right; }
+    .cw-score small { display: block; color: #6a7566; font-size: 0.66rem; }
     .path { color: #6a7566; margin: 0 0.25em; }
+    .cw-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.4rem; grid-column: 1 / -1; }
+    .cw-chip { font-size: 0.68rem; border: 1px solid #3a4636; border-radius: 100px; padding: 0.2em 0.65em; color: #aab7a5; }
+    .cw-chip.go { color: #101410; background: var(--product); border-color: var(--product); font-weight: 600; }
+    .cw-cta {
+      margin-top: 0.85rem;
+      text-align: center;
+      background: var(--product);
+      color: #101410;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+    }
+    .cw-link { margin-top: 0.7rem; text-align: center; color: #9aa795; font-size: 0.8rem; }
+    .cw-caption { margin-top: 0.9rem; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #5d6859; text-align: center; }
+    .cw-pill { display: inline-block; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--product); margin-bottom: 0.6rem; }
+
+    /* QR box label */
+    .cw-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f3f1ea;
+      color: #1b1f19;
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .cw-label svg { width: 76px; height: 76px; flex-shrink: 0; fill: #1b1f19; background: #fff; padding: 4px; border-radius: 4px; }
+    .cw-label strong { display: block; font-size: 1.15rem; letter-spacing: 0.01em; }
+    .cw-label span { font-size: 0.8rem; color: #4b5247; }
+    .cw-arrow { text-align: center; color: var(--product); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; margin: 0.75rem 0 0.25rem; }
+
+    .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .showcase + .showcase { margin-top: 3.5rem; }
+    .showcase h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: 0.005em; }
+    .showcase p { color: var(--muted); line-height: 1.75; margin-bottom: 0.9rem; }
+    .showcase > div > ul { list-style: none; color: var(--muted); font-size: 0.93rem; display: grid; gap: 0.4rem; }
+    .showcase > div > ul > li { padding-left: 1.3rem; position: relative; }
+    .showcase > div > ul > li::before { content: "✓"; position: absolute; left: 0; color: var(--product); }
+    .showcase.flip .cw-mock { order: -1; }
+
+    .usecases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .usecase h3 { font-size: 1.02rem; }
+    .usecase .for { display: block; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--product); margin-bottom: 0.7rem; }
+
+    @media (max-width: 860px) { .usecases { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 760px) {
+      .showcase { grid-template-columns: 1fr; gap: 1.5rem; }
+      .showcase.flip .cw-mock { order: 0; }
+      .usecases { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body style="--product: #9fc98a">
@@ -89,7 +141,7 @@
               <p class="cat">Home inventory &amp; search</p>
             </div>
           </div>
-          <p class="product-pitch">You own it. You just can't remember <strong>where you put it</strong>. Scan your drawers, closets and bins once, then find anything later.</p>
+          <p class="product-pitch">Know what you own and <strong>where it is</strong>. Get organized, pack for a move, or run a storage unit. Scan with AI or type it in, then find anything in seconds.</p>
           <p class="status-line"><span class="status-badge">In development</span></p>
           <div data-stores="clutterwise">
             <div class="stores">
@@ -97,80 +149,212 @@
             </div>
           </div>
           <ul class="proof-line">
+            <li>AI scanning or manual entry</li>
+            <li>QR labels for boxes</li>
             <li>Built for iPhone</li>
-            <li>AI-assisted scanning</li>
-            <li>QR labels for containers</li>
           </ul>
         </div>
 
-        <figure class="cw-mock fade-up" style="animation-delay:0.15s" role="img" aria-label="Illustration: searching for 'that orange hiking gadget' finds a Garmin inReach in the kitchen junk drawer.">
-          <div class="cw-search" aria-hidden="true">
+        <figure class="cw-mock fade-up" style="animation-delay:0.15s" role="img" aria-label="Illustration: searching for 'headlamp' finds an item saved as 'Black strap light with battery pack' in the garage camping tote, with a 71 percent match.">
+          <div class="cw-bar" aria-hidden="true">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3.5 3.5"/></svg>
-            that orange hiking gadget
+            headlamp
           </div>
-          <ul class="cw-results" aria-hidden="true">
-            <li class="cw-result">
-              <span class="cw-name">Garmin inReach</span>
-              <span class="cw-score">72%</span>
-              <span class="cw-where">Kitchen<span class="path">›</span>Junk drawer</span>
+          <ul class="cw-list" aria-hidden="true">
+            <li class="cw-row hit">
+              <span class="cw-name">Black strap light with battery pack</span>
+              <span class="cw-score">71%<small>match</small></span>
+              <span class="cw-sub">Garage<span class="path">›</span>Camping tote</span>
+              <span class="cw-chips"><span class="cw-chip">similar item</span><span class="cw-chip">camping gear</span></span>
             </li>
-            <li class="cw-result">
-              <span class="cw-name">Headlamp</span>
-              <span class="cw-score">41%</span>
-              <span class="cw-where">Garage<span class="path">›</span>Camping tote</span>
+            <li class="cw-row">
+              <span class="cw-name">LED flashlight</span>
+              <span class="cw-score">48%<small>match</small></span>
+              <span class="cw-sub">Kitchen<span class="path">›</span>Junk drawer</span>
+            </li>
+          </ul>
+          <p class="cw-caption" aria-hidden="true">Illustration · finds close matches, not just exact words</p>
+        </figure>
+      </div>
+    </header>
+
+    <!-- Use cases -->
+    <section id="uses" aria-labelledby="uses-h">
+      <p class="section-label" data-index="01">Who it's for</p>
+      <h2 id="uses-h">One app, a lot of ways to use it</h2>
+      <div class="usecases">
+        <div class="card usecase">
+          <span class="for">At home</span>
+          <h3>Get organized</h3>
+          <p>Catalog the junk drawer, the closets and the pantry once. Stop buying duplicates and stop hunting for things you know you own.</p>
+        </div>
+        <div class="card usecase">
+          <span class="for">Moving</span>
+          <h3>Pack with a plan</h3>
+          <p>Label every box with a QR code, fill it in as you pack, and scan it at the other end to see exactly what's inside and where it goes.</p>
+        </div>
+        <div class="card usecase">
+          <span class="for">Professional movers</span>
+          <h3>Keep every job straight</h3>
+          <p>Label and scan boxes for each customer so crews can tell what's in a box without opening it, and clients get a clear record.</p>
+        </div>
+        <div class="card usecase">
+          <span class="for">Storage units</span>
+          <h3>Remember what's in storage</h3>
+          <p>Give every bin and shelf a label. Months later, search for the item and know which bin to pull instead of emptying the unit.</p>
+        </div>
+        <div class="card usecase">
+          <span class="for">Garage &amp; seasonal</span>
+          <h3>Tame the overflow</h3>
+          <p>Holiday decorations, camping gear, tools and sports equipment: know which tote has what before you start digging.</p>
+        </div>
+        <div class="card usecase">
+          <span class="for">Households</span>
+          <h3>Share the inventory</h3>
+          <p>Merge your inventory with a partner's or roommate's so everyone can find things, without wiping out what either of you has saved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- In action -->
+    <section id="in-action" aria-labelledby="action-h">
+      <p class="section-label" data-index="02">See it in action</p>
+      <h2 id="action-h">Capture it your way</h2>
+
+      <div class="showcase">
+        <div>
+          <span class="cw-pill">Scan with AI</span>
+          <h3>Point, shoot, review</h3>
+          <p>Photograph a drawer, shelf or bin and AI picks out what's in it: likely names, category, color, material and any text it can read. Nothing is saved until you say so.</p>
+          <ul>
+            <li>Camera or photo library</li>
+            <li>Edit, keep or delete each item</li>
+            <li>Prefer to type? Add any item by hand</li>
+          </ul>
+        </div>
+        <figure class="cw-mock" role="img" aria-label="Illustration: after scanning the hall closet's top shelf, a review screen lists three found items with confidence scores and a Save button.">
+          <div class="cw-bar" aria-hidden="true"><span class="dim">Hall closet<span class="path">›</span>Top shelf</span></div>
+          <ul class="cw-list" aria-hidden="true">
+            <li class="cw-row">
+              <span class="cw-name">Wool blanket, folded</span>
+              <span class="cw-score">94%</span>
+              <span class="cw-sub">Household linens</span>
+              <span class="cw-chips"><span class="cw-chip go">Keep</span><span class="cw-chip">Edit</span><span class="cw-chip">Delete</span></span>
+            </li>
+            <li class="cw-row">
+              <span class="cw-name">Cardboard shoe box</span>
+              <span class="cw-score">88%</span>
+              <span class="cw-sub">Storage</span>
+            </li>
+            <li class="cw-row">
+              <span class="cw-name">Board game, boxed</span>
+              <span class="cw-score">81%</span>
+              <span class="cw-sub">Games &amp; toys</span>
+            </li>
+          </ul>
+          <div class="cw-cta" aria-hidden="true">Save 3 items</div>
+          <p class="cw-link" aria-hidden="true">or add an item by hand</p>
+          <p class="cw-caption" aria-hidden="true">Illustration</p>
+        </figure>
+      </div>
+
+      <div class="showcase flip">
+        <div>
+          <span class="cw-pill">Scan a QR label</span>
+          <h3>Every box gets an identity</h3>
+          <p>Print labels, stick one on each box or bin, and scan it with Clutterwise or the iPhone Camera. A new label sets up the container; a known one jumps straight to what's inside.</p>
+          <ul>
+            <li>Ideal for moving boxes and storage bins</li>
+            <li>Choose the label layout that suits your boxes</li>
+            <li>Works for one household or a whole job</li>
+          </ul>
+        </div>
+        <figure class="cw-mock" role="img" aria-label="Illustration: scanning the QR label on a moving box labelled Box 14, Kitchen opens a list of its contents: Dutch oven, mixing bowls and a whisk set.">
+          <div class="cw-label" aria-hidden="true">
+            <svg viewBox="0 0 13 13" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"/><rect x="0" y="1" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="0" y="3" width="1" height="1"/><rect x="0" y="4" width="1" height="1"/><rect x="0" y="5" width="1" height="1"/><rect x="0" y="6" width="1" height="1"/><rect x="0" y="7" width="1" height="1"/><rect x="0" y="8" width="1" height="1"/><rect x="0" y="9" width="1" height="1"/><rect x="0" y="10" width="1" height="1"/><rect x="0" y="11" width="1" height="1"/><rect x="0" y="12" width="1" height="1"/><rect x="1" y="0" width="1" height="1"/><rect x="1" y="6" width="1" height="1"/><rect x="1" y="12" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="2" y="9" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="2" y="12" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="3" y="3" width="1" height="1"/><rect x="3" y="4" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="3" y="9" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/><rect x="4" y="2" width="1" height="1"/><rect x="4" y="3" width="1" height="1"/><rect x="4" y="4" width="1" height="1"/><rect x="4" y="6" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/><rect x="4" y="9" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="5" y="0" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="6" y="0" width="1" height="1"/><rect x="6" y="1" width="1" height="1"/><rect x="6" y="2" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/><rect x="6" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="6" y="6" width="1" height="1"/><rect x="6" y="7" width="1" height="1"/><rect x="6" y="8" width="1" height="1"/><rect x="6" y="9" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="6" y="11" width="1" height="1"/><rect x="6" y="12" width="1" height="1"/><rect x="7" y="0" width="1" height="1"/><rect x="7" y="6" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/><rect x="8" y="2" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="8" y="4" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="8" y="8" width="1" height="1"/><rect x="8" y="9" width="1" height="1"/><rect x="8" y="11" width="1" height="1"/><rect x="9" y="0" width="1" height="1"/><rect x="9" y="2" width="1" height="1"/><rect x="9" y="3" width="1" height="1"/><rect x="9" y="4" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="9" y="9" width="1" height="1"/><rect x="9" y="11" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/><rect x="10" y="0" width="1" height="1"/><rect x="10" y="2" width="1" height="1"/><rect x="10" y="3" width="1" height="1"/><rect x="10" y="4" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="10" y="9" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="10" y="12" width="1" height="1"/><rect x="11" y="0" width="1" height="1"/><rect x="11" y="6" width="1" height="1"/><rect x="11" y="8" width="1" height="1"/><rect x="11" y="12" width="1" height="1"/><rect x="12" y="0" width="1" height="1"/><rect x="12" y="1" width="1" height="1"/><rect x="12" y="2" width="1" height="1"/><rect x="12" y="3" width="1" height="1"/><rect x="12" y="4" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/><rect x="12" y="6" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="12" y="11" width="1" height="1"/><rect x="12" y="12" width="1" height="1"/></svg>
+            <div><strong>Box 14</strong><span>Kitchen<br>Pots &amp; pans</span></div>
+          </div>
+          <p class="cw-arrow" aria-hidden="true">Scan ↓</p>
+          <ul class="cw-list" aria-hidden="true" style="margin-top:0.4rem">
+            <li class="cw-row hit">
+              <span class="cw-name">Box 14 · Kitchen</span>
+              <span class="cw-score">12 items</span>
+              <span class="cw-sub">Moving · Going to: Kitchen</span>
+            </li>
+            <li class="cw-row"><span class="cw-name">Dutch oven</span></li>
+            <li class="cw-row"><span class="cw-name">Mixing bowls (3)</span></li>
+            <li class="cw-row"><span class="cw-name">Whisk set</span></li>
+          </ul>
+          <p class="cw-caption" aria-hidden="true">Illustration</p>
+        </figure>
+      </div>
+
+      <div class="showcase">
+        <div>
+          <span class="cw-pill">Search</span>
+          <h3>Find it even when you forgot the name</h3>
+          <p>Search the way you'd describe it. Clutterwise matches on names, details, categories and where things are stored, so a close match turns up even when the words don't line up exactly.</p>
+          <ul>
+            <li>Normal search plus smarter Advanced Search</li>
+            <li>See where it lives: room, spot and container</li>
+            <li>Shows why each result matched</li>
+          </ul>
+        </div>
+        <figure class="cw-mock" role="img" aria-label="Illustration: searching for 'tent poles' finds a bag of aluminum rods in the storage unit, bin 3, even though the words differ.">
+          <div class="cw-bar" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3.5 3.5"/></svg>
+            tent poles
+          </div>
+          <ul class="cw-list" aria-hidden="true">
+            <li class="cw-row hit">
+              <span class="cw-name">Nylon bag of aluminum rods</span>
+              <span class="cw-score">76%<small>match</small></span>
+              <span class="cw-sub">Storage unit<span class="path">›</span>Bin 3</span>
+              <span class="cw-chips"><span class="cw-chip">similar item</span><span class="cw-chip">camping gear</span></span>
+            </li>
+            <li class="cw-row">
+              <span class="cw-name">Tarp, blue</span>
+              <span class="cw-score">52%<small>match</small></span>
+              <span class="cw-sub">Storage unit<span class="path">›</span>Bin 3</span>
             </li>
           </ul>
           <p class="cw-caption" aria-hidden="true">Illustration</p>
         </figure>
       </div>
-    </header>
+    </section>
 
     <!-- How it works -->
     <section id="how" aria-labelledby="how-h">
-      <p class="section-label" data-index="01">How it works</p>
-      <h2 id="how-h">Scan once. Search forever.</h2>
+      <p class="section-label" data-index="03">How it works</p>
+      <h2 id="how-h">Capture. Organize. Find.</h2>
       <ol class="steps">
-        <li><h3>Scan a spot</h3><p>Point your camera at a drawer, shelf or bin, or pick a photo. Tell Clutterwise where it is.</p></li>
-        <li><h3>Review what it found</h3><p>AI reads each item's name, look and any visible text. You edit, keep or delete before anything is saved.</p></li>
-        <li><h3>Search for anything</h3><p>Search by name, by description, or by what it's for, and see exactly where it lives.</p></li>
+        <li><h3>Capture</h3><p>Scan a spot with AI, or type items in by hand. Review everything before it's saved.</p></li>
+        <li><h3>Organize</h3><p>File items by room, location and container. Add QR labels to the boxes and bins that matter.</p></li>
+        <li><h3>Find</h3><p>Search by name or description and see exactly where it lives, even with a fuzzy memory.</p></li>
       </ol>
-    </section>
-
-    <!-- Organize -->
-    <section id="organize" aria-labelledby="org-h">
-      <p class="section-label" data-index="02">Stay organized</p>
-      <h2 id="org-h">A map of your home</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Rooms, locations, containers</h3>
-          <p>File items the way your home is actually arranged: a room, a spot in it, and the box or drawer inside.</p>
-        </div>
-        <div class="card">
-          <h3>QR labels for your bins</h3>
-          <p>Print a label, stick it on a container, and scan it later with Clutterwise or the Camera app to jump straight to what's inside.</p>
-        </div>
-      </div>
     </section>
 
     <!-- Features -->
     <section id="features" aria-labelledby="features-h">
-      <p class="section-label" data-index="03">Features</p>
+      <p class="section-label" data-index="04">Features</p>
       <h2 id="features-h">Made for real clutter</h2>
       <ul class="feature-list">
-        <li><strong>Scan with camera or photo library.</strong> Capture a whole drawer at once.</li>
+        <li><strong>AI scan or manual entry.</strong> Use whichever is faster for the job.</li>
+        <li><strong>Rooms, locations and containers.</strong> Organize the way your space is actually arranged.</li>
+        <li><strong>QR labels.</strong> Print them for boxes, bins and shelves; scan with Clutterwise or the Camera app.</li>
         <li><strong>Rich item details.</strong> Likely names, category, color, shape, material and text on the item.</li>
-        <li><strong>You're in control.</strong> Review, edit, keep or delete each item before saving, or add one by hand.</li>
-        <li><strong>Search that understands you.</strong> Normal search plus Advanced Search that matches on meaning and storage context.</li>
+        <li><strong>Smart search.</strong> Standard search plus Advanced Search that matches on meaning and storage context.</li>
         <li><strong>Backup and restore.</strong> Export your inventory, with or without photos, and bring it back anytime.</li>
-        <li><strong>Share with your household.</strong> Merge in someone else's inventory without wiping your own.</li>
+        <li><strong>Merge inventories.</strong> Bring in someone else's data without replacing your own.</li>
+        <li><strong>You stay in control.</strong> Review, edit, keep or delete every item before it's saved.</li>
       </ul>
     </section>
 
-    <!-- Privacy & updates -->
+    <!-- Status -->
     <section id="updates" aria-labelledby="updates-h">
-      <p class="section-label" data-index="04">Status</p>
+      <p class="section-label" data-index="05">Status</p>
       <h2 id="updates-h">Coming to the App Store</h2>
-      <p style="color:var(--muted);line-height:1.75;max-width:42rem">Clutterwise is in active development for iPhone. Scanning uses AI to read your photos, so a full privacy policy will be published here before launch. Want to hear when it's ready, or have an idea for it? Get in touch.</p>
+      <p style="color:var(--muted);line-height:1.75;max-width:42rem">Clutterwise is in active development for iPhone. AI scanning reads your photos, so a full privacy policy will be published here before launch. Want to hear when it's ready, or have a use case in mind? Get in touch.</p>
       <div class="link-row">
         <a href="mailto:clutterwise@darkarborlabs.com?subject=Clutterwise">clutterwise@darkarborlabs.com</a>
       </div>
