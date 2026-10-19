@@ -11,7 +11,7 @@ Keep clear space around each badge (Apple: 1/10 of badge height; Google: 1/4), s
 
 ## Going live for a product
 
-In `assets/products.json`, set the store URL and flip the status:
+In `assets/products.js`, set the store URL and flip the status:
 
 ```json
 "status": "available",

@@ -1,11 +1,16 @@
 /* Dark Arbor Labs: Products menu, catalog grid and store buttons.
-   Everything is driven by /assets/products.json, so adding a product is one JSON entry
+   Everything is driven by assets/products.js, so adding a product is one entry there
    plus a page under /products/<slug>/. Pages stay readable without JS: the nav's
    "Products" item is a normal link to /products/. */
 (function () {
   'use strict';
 
   document.documentElement.classList.add('js');
+
+  // Paths in products.json are relative to the site root, which is wherever this script's
+  // parent folder lives. That keeps the site working from any host, subfolder or file://.
+  var ROOT = new URL('../', document.currentScript.src);
+  function url(path) { return new URL(path, ROOT).href; }
 
   var PLATFORMS = {
     ios:     'iPhone & iPad',
@@ -18,11 +23,11 @@
 
   // Official badge artwork must come from Apple / Google (see README in assets/badges).
   var BADGES = {
-    ios:     { src: '/assets/badges/app-store.svg',  alt: 'Download on the App Store' },
-    android: { src: '/assets/badges/google-play.png', alt: 'Get it on Google Play' }
+    ios:     { src: 'assets/badges/app-store.svg',  alt: 'Download on the App Store' },
+    android: { src: 'assets/badges/google-play.png', alt: 'Get it on Google Play' }
   };
 
-  var STATUS_LABEL = { 'coming-soon': 'Coming soon' };
+  var STATUS_LABEL = { 'coming-soon': 'Coming soon', 'in-development': 'In development' };
 
   function h(tag, attrs, children) {
     var el = document.createElement(tag);
@@ -35,12 +40,13 @@
   }
 
   function platformsOf(p) { return Object.keys(p.stores || {}); }
-  function platformLabel(key) { return PLATFORMS[key] || key; }
+  // A store entry may carry its own label, e.g. { "label": "iPhone" } for an iPhone-only app.
+  function platformLabel(key, product) {
+    var store = product && product.stores && product.stores[key];
+    return (store && store.label) || PLATFORMS[key] || key;
+  }
 
-  var productsPromise = fetch('/assets/products.json')
-    .then(function (r) { return r.json(); })
-    .then(function (d) { return d.products || []; })
-    .catch(function () { return []; });
+  var products = window.DAL_PRODUCTS || [];
 
   function statusTag(p) {
     var label = STATUS_LABEL[p.status];
@@ -76,7 +82,7 @@
       products.forEach(function (p) { panel.appendChild(menuItem(p)); });
     }
 
-    panel.appendChild(h('a', { 'class': 'menu-all', href: '/products/' }, [
+    panel.appendChild(h('a', { 'class': 'menu-all', href: url('products/') }, [
       h('span', { text: 'All products' }), h('span', { 'aria-hidden': 'true', text: '→' })
     ]));
 
@@ -87,11 +93,11 @@
 
   function menuItem(p) {
     var name = h('span', { 'class': 'menu-item-name' }, [h('span', { text: p.name }), statusTag(p)]);
-    var a = h('a', { 'class': 'menu-item', href: p.url }, [
-      h('img', { src: p.icon, alt: '', width: '40', height: '40', loading: 'lazy' }),
+    var a = h('a', { 'class': 'menu-item', href: url(p.url) }, [
+      h('img', { src: url(p.icon), alt: '', width: '40', height: '40', loading: 'lazy' }),
       h('span', { 'class': 'menu-item-text' }, [name, h('span', { 'class': 'menu-item-desc', text: p.tagline })])
     ]);
-    if (location.pathname.indexOf(p.url) === 0) a.setAttribute('aria-current', 'page');
+    if (location.pathname.indexOf(new URL(p.url, ROOT).pathname) === 0) a.setAttribute('aria-current', 'page');
     return a;
   }
 
@@ -144,12 +150,12 @@
       var badge = BADGES[key];
       if (store.url && badge) {
         wrap.appendChild(h('a', { 'class': 'store-badge', href: store.url, rel: 'noopener' }, [
-          h('img', { src: badge.src, alt: badge.alt, height: '48' })
+          h('img', { src: url(badge.src), alt: badge.alt, height: '48' })
         ]));
       } else if (store.url) {
-        wrap.appendChild(h('a', { 'class': 'store-link', href: store.url, rel: 'noopener', text: platformLabel(key) }));
+        wrap.appendChild(h('a', { 'class': 'store-link', href: store.url, rel: 'noopener', text: platformLabel(key, product) }));
       } else {
-        wrap.appendChild(h('span', { 'class': 'store-soon', text: platformLabel(key) + ' · coming soon' }));
+        wrap.appendChild(h('span', { 'class': 'store-soon', text: platformLabel(key, product) + ' · coming soon' }));
       }
     });
     return wrap;
@@ -172,14 +178,14 @@
       grid.replaceChildren.apply(grid, products
         .filter(function (p) { return !platform || platformsOf(p).indexOf(platform) !== -1; })
         .map(function (p) {
-          return h('a', { 'class': 'product-card', href: p.url }, [
-            h('img', { 'class': 'product-card-icon', src: p.icon, alt: '', width: '72', height: '72' }),
+          return h('a', { 'class': 'product-card', href: url(p.url) }, [
+            h('img', { 'class': 'product-card-icon', src: url(p.icon), alt: '', width: '72', height: '72' }),
             h('div', { 'class': 'product-card-body' }, [
               h('div', { 'class': 'product-card-head' }, [h('h3', { text: p.name }), statusTag(p)]),
               h('p', { 'class': 'product-card-tagline', text: p.tagline }),
               h('p', { 'class': 'product-card-summary', text: p.summary }),
               h('div', { 'class': 'product-card-platforms' }, platformsOf(p).map(function (k) {
-                return h('span', { 'class': 'tag', text: platformLabel(k) });
+                return h('span', { 'class': 'tag', text: platformLabel(k, p) });
               }))
             ])
           ]);
@@ -207,9 +213,16 @@
     }
   }
 
-  productsPromise.then(function (products) {
-    buildMenu(products);
-    buildStores(products);
-    buildCatalog(products);
-  });
+  buildMenu(products);
+  buildStores(products);
+  buildCatalog(products);
+
+  // Opened straight from disk (file://), a link to a folder opens Finder instead of the
+  // page. Point folder links at their index.html there; on a web server nothing changes.
+  if (location.protocol === 'file:') {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (/\/(#.*)?$/.test(href)) a.setAttribute('href', href.replace(/\/(#.*)?$/, '/index.html$1'));
+    });
+  }
 }());
