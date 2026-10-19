@@ -1,0 +1,462 @@
+/* Dark Arbor Labs: shared styles (tokens, shell, nav, products menu, footer).
+   Page-specific styles stay in each page's own <style> block. */
+
+:root {
+  --bg:       #1a1a1a;
+  --bg-card:  #222222;
+  --ink:      #f4f4f4;
+  --muted:    #8f8f8f;
+  --rule:     #2a2a2a;
+  --accent:   #c8c8c8;
+  --mono:     ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,255,255,0.04), transparent),
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0) 0 0/28px 28px,
+    var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* ── Layout shell ── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 3.5rem 0;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 60px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 0.7s ease both; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0.75rem; }
+
+/* ── Nav ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 54px;
+}
+
+.nav-brand {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-links a,
+.nav-caret {
+  position: relative;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding-bottom: 4px;
+}
+
+.nav-links > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links > li > a:hover,
+.nav-links > li > a[aria-current] { color: var(--ink); }
+.nav-links > li > a:hover::after,
+.nav-links > li > a[aria-current]::after { transform: scaleX(1); transform-origin: left; }
+
+/* Products: a real link (works without JS) plus a caret button that opens the menu. */
+.nav-links li { display: flex; align-items: center; }
+.nav-products { position: relative; }
+
+.nav-caret {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0 0 4px 0.45rem;
+  display: none;
+  line-height: 1;
+}
+.js .nav-caret { display: inline-flex; align-items: center; }
+.nav-caret svg { width: 10px; height: 10px; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.nav-caret:hover,
+.nav-products.open .nav-caret { color: var(--ink); }
+.nav-products.open .nav-caret svg { transform: rotate(180deg); }
+
+.products-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: -1rem;
+  width: min(420px, calc(100vw - 2rem));
+  background: #202020;
+  border: 1px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  padding: 0.5rem;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.25s;
+}
+
+/* Invisible bridge so the pointer can travel from the link to the panel without closing it. */
+.products-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 18px;
+}
+
+.nav-products.open .products-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.menu-group-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
+  padding: 0.7rem 0.75rem 0.3rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.18s;
+}
+.menu-item:hover,
+.menu-item:focus-visible { background: #2a2a2a; }
+
+.menu-item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: #333;
+}
+
+.menu-item-text { min-width: 0; flex: 1; }
+
+.menu-item-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.menu-item-desc {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.35rem;
+  padding: 0.75rem 0.75rem 0.55rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.menu-all:hover,
+.menu-all:focus-visible { color: var(--ink); }
+
+/* Small status / platform tags, shared by the menu and the catalog */
+.tag {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 0.3em 0.6em;
+  border-radius: 100px;
+  border: 1px solid #3a3a3a;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.tag.soon { color: #7fd99a; border-color: rgba(127, 217, 154, 0.35); }
+
+/* ── Section headings ── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.section-label::before {
+  content: attr(data-index);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0;
+  color: #555;
+}
+
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Capabilities ── */
+.cap-group { margin-bottom: 2.25rem; }
+.cap-group:last-child { margin-bottom: 0; }
+
+.cap-group-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 2rem 1.75rem;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #3a3a3a;
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ── Status badge ── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 0.3em 0.9em 0.3em 0.7em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7fd99a;
+  box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.5); }
+  70%  { box-shadow: 0 0 0 6px rgba(127, 217, 154, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0); }
+}
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+
+.legal-notice {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.copyright {
+  font-size: 0.78rem;
+  color: #666;
+  letter-spacing: 0.05em;
+}
+
+.trademarks {
+  font-size: 0.72rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+  section { padding: 2.5rem 0; }
+  .nav-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 0.85rem 1.5rem;
+    row-gap: 0.6rem;
+  }
+  .nav-brand { flex: 1 1 100%; }
+  .nav-links { gap: 0.45rem 1rem; flex-wrap: wrap; }
+  .nav-links a, .nav-caret { font-size: 0.68rem; letter-spacing: 0.08em; }
+  /* Menu spans the nav width on phones instead of hanging off the Products link. */
+  .nav-products { position: static; }
+  .products-menu {
+    top: 100%;
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+  }
+  .products-menu::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up { animation: none; }
+  .products-menu, .nav-caret svg { transition: none; }
+}

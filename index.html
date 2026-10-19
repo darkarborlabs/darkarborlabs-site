@@ -9,119 +9,10 @@
   <meta property="og:description" content="Mobile apps, software products, and technical consulting. Rooted. Connected. Built.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.darkarborlabs.com">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/site.js" defer></script>
   <style>
-    :root {
-      --bg:       #1a1a1a;
-      --bg-card:  #222222;
-      --ink:      #f4f4f4;
-      --muted:    #8f8f8f;
-      --rule:     #2a2a2a;
-      --accent:   #c8c8c8;
-      --mono:     ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background:
-        radial-gradient(ellipse 900px 500px at 50% -10%, rgba(255,255,255,0.04), transparent),
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0) 0 0/28px 28px,
-        var(--bg);
-      color: var(--ink);
-      font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    /* ── Layout shell ── */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    section {
-      padding: 3.5rem 0;
-      border-top: 1px solid var(--rule);
-    }
-
-    /* ── Fade-in animation ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-up { animation: fadeUp 0.7s ease both; }
     .hero-body.fade-up { animation-delay: 0.15s; }
-
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(26, 26, 26, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .nav-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 54px;
-    }
-
-    .nav-brand {
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.75rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      position: relative;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      padding-bottom: 4px;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--ink);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-
-    section { scroll-margin-top: 60px; }
 
     /* ── Hero ── */
     .hero {
@@ -210,107 +101,6 @@
       .hero-body { max-width: none; margin: 0 auto; }
     }
 
-    /* ── Section headings ── */
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-label::before {
-      content: attr(data-index);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0;
-      color: #555;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ── Capabilities ── */
-    .cap-group { margin-bottom: 2.25rem; }
-    .cap-group:last-child { margin-bottom: 0; }
-
-    .cap-group-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-    }
-
-    .card {
-      position: relative;
-      background: var(--bg-card);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      padding: 2rem 1.75rem;
-      overflow: hidden;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--ink);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: #3a3a3a;
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-      letter-spacing: 0.01em;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.65;
-    }
-
-    @media (max-width: 640px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
     /* ── Active initiatives ── */
     .initiative-block {
       max-width: none;
@@ -322,36 +112,6 @@
       line-height: 1.75;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5em;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: var(--bg-card);
-      border: 1px solid var(--rule);
-      border-radius: 100px;
-      padding: 0.3em 0.9em 0.3em 0.7em;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .status-badge::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #7fd99a;
-      box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.6);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0.5); }
-      70%  { box-shadow: 0 0 0 6px rgba(127, 217, 154, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(127, 217, 154, 0); }
-    }
 
     /* ── About ── */
     .about-body {
@@ -409,47 +169,21 @@
     .contact-item a:hover { border-bottom-color: var(--ink); }
     .contact-item a:visited { color: var(--ink); }
 
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 2.5rem 0;
-      text-align: center;
-    }
 
-    .legal-notice {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .copyright {
-      font-size: 0.78rem;
-      color: #555;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Responsive ── */
     @media (max-width: 600px) {
-      section { padding: 2.5rem 0; }
       .hero   { padding: 3rem 0 2.5rem; }
-      .nav-inner {
-        flex-wrap: wrap;
-        height: auto;
-        padding: 0.85rem 1.5rem;
-        row-gap: 0.6rem;
-      }
-      .nav-brand { flex: 1 1 100%; }
-      .nav-links { gap: 1.1rem; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <nav>
     <div class="nav-inner">
-      <a href="#" class="nav-brand">Dark Arbor Labs</a>
+      <a href="/" class="nav-brand">Dark Arbor Labs</a>
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
+        <li class="nav-products"><a href="/products/">Products</a></li>
         <li><a href="#initiatives">Initiatives</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -457,7 +191,7 @@
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container" id="main">
 
     <!-- Hero -->
     <header class="hero">
