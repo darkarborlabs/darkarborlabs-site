@@ -156,9 +156,8 @@
         ]));
       } else if (store.url) {
         wrap.appendChild(h('a', { 'class': 'store-link', href: store.url, rel: 'noopener', text: platformLabel(key, product) }));
-      } else {
-        wrap.appendChild(h('span', { 'class': 'store-soon', text: platformLabel(key, product) + ' · coming soon' }));
       }
+      // No store link yet: show nothing until the app is live.
     });
     return wrap;
   }
