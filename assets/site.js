@@ -195,6 +195,44 @@
   buildStores(products);
   buildCatalog(products);
 
+  /* ── Screenshot viewer: click a screenshot to see it larger ── */
+  (function () {
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('.shots img'));
+    if (!imgs.length || typeof HTMLDialogElement === 'undefined') return;
+
+    var dialog = h('dialog', { 'class': 'lightbox', 'aria-label': 'Screenshot viewer' });
+    var big = h('img', { alt: '' });
+    var close = h('button', { type: 'button', 'class': 'lightbox-btn lightbox-close', 'aria-label': 'Close', text: '\u00d7' });
+    var prev = h('button', { type: 'button', 'class': 'lightbox-btn lightbox-prev', 'aria-label': 'Previous screenshot', text: '\u2039' });
+    var next = h('button', { type: 'button', 'class': 'lightbox-btn lightbox-next', 'aria-label': 'Next screenshot', text: '\u203a' });
+    [big, close, prev, next].forEach(function (el) { dialog.appendChild(el); });
+    document.body.appendChild(dialog);
+
+    var index = 0;
+    function show(i) {
+      index = (i + imgs.length) % imgs.length;
+      big.src = imgs[index].currentSrc || imgs[index].src;
+      big.alt = imgs[index].alt;
+    }
+
+    imgs.forEach(function (img, i) {
+      var b = h('button', { type: 'button', 'class': 'shot-btn', 'aria-label': 'View larger: ' + img.alt });
+      img.parentNode.insertBefore(b, img);
+      b.appendChild(img);
+      b.addEventListener('click', function () { show(i); dialog.showModal(); });
+    });
+
+    close.addEventListener('click', function () { dialog.close(); });
+    prev.addEventListener('click', function () { show(index - 1); });
+    next.addEventListener('click', function () { show(index + 1); });
+    // A click on the dark backdrop (the dialog itself) closes it.
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+  }());
+
   // Opened straight from disk (file://), a link to a folder opens Finder instead of the
   // page. Point folder links at their index.html there; on a web server nothing changes.
   if (location.protocol === 'file:') {
