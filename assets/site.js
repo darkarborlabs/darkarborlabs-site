@@ -56,6 +56,8 @@
   /* ── Nav: Products menu ── */
   function buildMenu(products) {
     var li = document.querySelector('.nav-products');
+    // Products without a page of their own yet stay on the catalog only.
+    products = products.filter(function (p) { return p.url; });
     if (!li || !products.length) return;
 
     var caret = h('button', {
@@ -172,45 +174,22 @@
   function buildCatalog(products) {
     var grid = document.getElementById('product-grid');
     if (!grid) return;
-    var filters = document.getElementById('product-filters');
-
-    function render(platform) {
+    function render() {
       grid.replaceChildren.apply(grid, products
-        .filter(function (p) { return !platform || platformsOf(p).indexOf(platform) !== -1; })
         .map(function (p) {
-          return h('a', { 'class': 'product-card', href: url(p.url) }, [
+          var summary = p.summary + (p.eta ? ' Expected ' + p.eta + '.' : '');
+          return h(p.url ? 'a' : 'div', { 'class': 'product-card' + (p.url ? '' : ' static'), href: p.url ? url(p.url) : null }, [
             h('img', { 'class': 'product-card-icon', src: url(p.icon), alt: '', width: '72', height: '72' }),
             h('div', { 'class': 'product-card-body' }, [
               h('div', { 'class': 'product-card-head' }, [h('h3', { text: p.name }), statusTag(p)]),
               h('p', { 'class': 'product-card-tagline', text: p.tagline }),
-              h('p', { 'class': 'product-card-summary', text: p.summary }),
-              h('div', { 'class': 'product-card-platforms' }, platformsOf(p).map(function (k) {
-                return h('span', { 'class': 'tag', text: platformLabel(k, p) });
-              }))
+              h('p', { 'class': 'product-card-summary', text: summary })
             ])
           ]);
         }));
     }
 
-    render(null);
-
-    // A platform filter only earns its space once there is something to filter.
-    var platforms = [];
-    products.forEach(function (p) {
-      platformsOf(p).forEach(function (k) { if (platforms.indexOf(k) === -1) platforms.push(k); });
-    });
-    if (filters && products.length >= 4 && platforms.length > 1) {
-      var buttons = [null].concat(platforms).map(function (k) {
-        var b = h('button', { type: 'button', 'class': 'filter-chip', 'aria-pressed': String(k === null), text: k ? platformLabel(k) : 'All' });
-        b.addEventListener('click', function () {
-          buttons.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-          render(k);
-        });
-        return b;
-      });
-      filters.replaceChildren.apply(filters, buttons);
-      filters.hidden = false;
-    }
+    render();
   }
 
   buildMenu(products);

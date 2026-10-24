@@ -81,7 +81,10 @@
   transform-origin: left;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.product-card:hover { transform: translateY(-3px); border-color: #3a3a3a; }
+.product-card.static { cursor: default; }
+.product-card.static:hover { transform: none; border-color: var(--rule); }
+.product-card.static:hover::before { transform: scaleX(0); }
+.product-card:not(.static):hover { transform: translateY(-3px); border-color: #3a3a3a; }
 .product-card:hover::before { transform: scaleX(1); }
 
 .product-card-icon {

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dark Arbor Labs</title>
-  <meta name="description" content="Dark Arbor Labs LLC — an independent software engineering and consulting firm in Los Angeles specializing in mobile app development, data and AI solutions, and technical consulting.">
+  <meta name="description" content="Dark Arbor Labs is an independent technology company in Los Angeles. We build technology products and offer technology consulting, including data and AI.">
   <meta property="og:title" content="Dark Arbor Labs">
-  <meta property="og:description" content="Mobile apps, software products, and technical consulting. Rooted. Connected. Built.">
+  <meta property="og:description" content="Technology products and consulting from Los Angeles. Rooted. Connected. Built.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.darkarborlabs.com">
   <link rel="stylesheet" href="assets/site.css">
@@ -113,6 +113,43 @@
       line-height: 1.75;
     }
 
+    .initiative-block a { color: var(--ink); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .why-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    a.why-card {
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    }
+    a.why-card:hover { transform: translateY(-3px); border-color: #3a3a3a; }
+
+    .why-card-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      flex-shrink: 0;
+    }
+
+    .why-card h3 { color: var(--ink); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.01em; }
+    .why-card .why-card-tagline { color: var(--ink); font-size: 0.93rem; margin: 0.15rem 0 0.6rem; }
+    .why-card p { font-size: 0.93rem; line-height: 1.65; }
+
 
     /* ── About ── */
     .about-body {
@@ -184,9 +221,9 @@
       <a href="./" class="nav-brand">Dark Arbor Labs</a>
       <ul class="nav-links">
         <li class="nav-products"><a href="products/">Products</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#initiatives">Initiatives</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#initiatives">Initiatives</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -209,76 +246,107 @@
           </div>
         </div>
         <p class="hero-body fade-up">
-          A Los Angeles-based software engineering and consulting firm operating as a dual-engine product studio and consultancy. We build, deploy, and monetize our own portfolio of premium technology products while partnering with select organizations to engineer outcome-based, high-ROI technology solutions.
+          We build and publish consumer and business technology products, and offer technology consulting services including advisory and implementation.
         </p>
       </div>
     </header>
 
-    <!-- Services -->
-    <section id="services">
-      <p class="section-label" data-index="01">What we do</p>
-      <h2>Capabilities</h2>
-
-      <div class="cap-group">
-        <div class="cap-group-label">Product Development</div>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Mobile App Development</h3>
-            <p>Native iOS and Android applications built for the consumer and enterprise market — from vision through App Store release.</p>
-          </div>
-          <div class="card">
-            <h3>Software Engineering</h3>
-            <p>Web applications and backend systems built for the consumer and enterprise market — engineered for reliability, performance, and scale.</p>
-          </div>
-        </div>
+    <!-- About -->
+    <section id="about">
+      <p class="section-label" data-index="01">Who we are</p>
+      <h2>About the Studio</h2>
+      <div class="about-body">
+        <p>
+          Dark Arbor Labs LLC is an independent technology company with two parts: our own products, and consulting for organizations that want hands-on help with technology, data, and AI. We work with clients locally and remotely.
+        </p>
       </div>
-
-      <div class="cap-group">
-        <div class="cap-group-label">Advisory &amp; Consulting</div>
-        <div class="grid-2">
-          <div class="card advisory">
-            <h3>Data &amp; AI Solutions</h3>
-            <p>Data strategy and applied AI engineered to drive measurable business outcomes — grounded in enterprise-scale experience with the discipline to focus on what actually moves the needle.</p>
-          </div>
-          <div class="card advisory">
-            <h3>Technology Advisory</h3>
-            <p>Technical counsel for executives and founders on architecture, vendor strategy, team structure, and build decisions — from a practitioner, not a project manager.</p>
-          </div>
-        </div>
-      </div>
-
     </section>
 
     <!-- Active Initiatives -->
     <section id="initiatives">
-      <p class="section-label" data-index="02">Current work</p>
-      <h2>Active Initiatives</h2>
+      <p class="section-label" data-index="02">Why we build</p>
+      <h2>Current work</h2>
       <div class="initiative-block">
         <span class="status-badge">In development</span>
         <p>
-          Dark Arbor Labs is in active development on a suite of consumer and enterprise mobile applications — targeting deployment to the Apple App Store and Google Play Store in late 2026.
+          Our first products are passion projects: apps we wish existed, built to fix what frustrates us about the ones that do. We're tired of apps crowded with ads, hard to use, and not safe to hand to a child. So we build the opposite: simple, respectful of your time and attention, and designed with families in mind.
         </p>
-        <p style="margin-top: 1.25rem;">
-          On the consulting side, we work with a small number of clients at any given time across mobile development, data infrastructure, and technical strategy — keeping engagements focused and accountable.
+
+        <div class="why-grid">
+          <a class="why-card" href="products/pickibot/">
+            <img class="why-card-icon" src="assets/products/pickibot/icon.webp" alt="" width="72" height="72">
+            <div>
+              <h3>PickiBot</h3>
+              <p class="why-card-tagline">Spin the wheel. Let the bot pick.</p>
+              <p>The founder's daughter loves decision wheels. She uses them in doll play, to pick what's for dinner, and for everything in between. The ones out there are terrible, filled with ads that make them miserable to use. PickiBot is the wheel we wanted for her. Expected Q4 2026.</p>
+            </div>
+          </a>
+          <a class="why-card" href="products/clutterwise/">
+            <img class="why-card-icon" src="assets/products/clutterwise/icon.webp" alt="" width="72" height="72">
+            <div>
+              <h3>Clutterwise</h3>
+              <p class="why-card-tagline">Find what you already own.</p>
+              <p>We wished there was a quick way to get organized and know where everything is, whether it's around the house, in storage, or packed in moving boxes. Clutterwise is for individuals and families, and just as useful for professional movers and organizers. Expected Q1 2027.</p>
+            </div>
+          </a>
+          <a class="why-card" href="products/undivided/">
+            <img class="why-card-icon" src="assets/products/undivided/icon.webp" alt="" width="72" height="72">
+            <div>
+              <h3>Undivided</h3>
+              <p class="why-card-tagline">Divide the things, not the family.</p>
+              <p>Deciding who gets what is one of the hardest parts of a family's loss, and it's often left unsaid until it's too late. Undivided lets you set aside keepsakes with the stories behind them, choose who each is for, and hand your family and your attorney a clear record. Everything stays on your phone, with no account and no ads. Expected Q3 2027.</p>
+            </div>
+          </a>
+          <a class="why-card" href="products/clipstitch/">
+            <img class="why-card-icon" src="assets/products/clipstitch/icon.webp" alt="" width="72" height="72">
+            <div>
+              <h3>ClipStitch</h3>
+              <p class="why-card-tagline">Your clips, in the order you want.</p>
+              <p>The founder's daughter loves making toy play videos, but complex video editing apps got in her way. The clear gap was an easy way to combine clips in the order you want them. ClipStitch is perfect for her, and we hope for you! Expected Q1 2027.</p>
+            </div>
+          </a>
+        </div>
+
+        <p style="margin-top: 2rem;">
+          More is on the way. See <a href="products/">Products</a> for what's available and what's coming.
         </p>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about">
-      <p class="section-label" data-index="03">Who we are</p>
-      <h2>About the Studio</h2>
-      <div class="about-body">
-        <p>
-          Dark Arbor Labs LLC is an independent software engineering and technology consulting firm. We operate in two modes: building software products for direct market distribution, and advising clients who want the depth and experience of a major global consultancy — delivered directly, without the overhead, and with the flexibility to move at the speed the work actually requires.
-        </p>
-        <p>
-          The studio is founded and led by a technology executive with 20 years of enterprise consulting experience, most recently leading a data and AI practice at a large consultancy. That background informs how we approach every project — driven by outcomes over activity, measured by what changes for your business, not what gets built.
-        </p>
-        <p>
-          We're based in Los Angeles and work with clients locally and remotely.
-        </p>
+    <!-- Services -->
+    <section id="services">
+      <p class="section-label" data-index="03">What we do</p>
+      <h2>Services</h2>
+      <p style="color: var(--muted); line-height: 1.75; margin: 0 0 2rem;">We also take on a limited amount of consulting work alongside our own products.</p>
+
+      <div class="cap-group">
+        <div class="cap-group-label">Build</div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Mobile App Development</h3>
+            <p>iOS and Android apps, from first design through App Store and Google Play release.</p>
+          </div>
+          <div class="card">
+            <h3>Software Engineering</h3>
+            <p>Web applications and the backend services behind them.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="cap-group">
+        <div class="cap-group-label">Advise</div>
+        <div class="grid-2">
+          <div class="card advisory">
+            <h3>Data &amp; AI Solutions</h3>
+            <p>Strategy and implementation of data engineering, analytics, and AI solutions.</p>
+          </div>
+          <div class="card advisory">
+            <h3>Technology Advisory</h3>
+            <p>Guidance on architecture, vendor choices, team structure, and build-versus-buy decisions.</p>
+          </div>
+        </div>
+      </div>
+
     </section>
 
     <!-- Contact -->
@@ -307,7 +375,7 @@
   <footer>
     <div class="container">
       <p class="legal-notice">
-        Dark Arbor Labs LLC is a registered limited liability company in the State of California, providing software engineering and technology consulting services.
+        Dark Arbor Labs LLC is a California limited liability company.
       </p>
       <p class="copyright">&copy; 2026 Dark Arbor Labs LLC &middot; All rights reserved.</p>
     </div>
