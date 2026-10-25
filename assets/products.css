@@ -332,3 +332,21 @@
   .product-card { padding: 1.25rem; gap: 1rem; }
   .product-card-icon { width: 60px; height: 60px; border-radius: 14px; }
 }
+
+/* In-app pages (/app/<slug>/...): product-only header, no company navigation. */
+.app-header { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.app-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.app-ident { display: flex; align-items: center; gap: 0.7rem; font-weight: 700; letter-spacing: 0.01em; }
+.app-ident img { border-radius: 8px; }
+.app-nav { display: flex; gap: 1.25rem; font-size: 0.85rem; }
+.app-nav a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.app-nav a:hover, .app-nav [aria-current] { color: var(--ink); }
+.app-header + main .page-head { padding-top: 2.5rem; }

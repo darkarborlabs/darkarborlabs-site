@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} | Dark Arbor Labs</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonical}}">
+  <link rel="stylesheet" href="{{root}}assets/site.css">
+  <link rel="stylesheet" href="{{root}}assets/products.css">
+  <script src="{{root}}assets/products.js" defer></script>
+  <script src="{{root}}assets/site.js" defer></script>
+</head>
+<body style="--product: {{color}}">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="{{root}}" class="nav-brand">Dark Arbor Labs</a>
+      <ul class="nav-links">
+        <li class="nav-products"><a href="{{root}}products/" aria-current="page">Products</a></li>
+        <li><a href="{{root}}#about">About</a></li>
+        <li><a href="{{root}}#initiatives">Initiatives</a></li>
+        <li><a href="{{root}}#services">Services</a></li>
+        <li><a href="{{root}}#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container" id="main">
+    <header class="page-head">
+      <div class="breadcrumb">
+        <a href="{{root}}products/">Products</a><span aria-hidden="true">/</span><a href="{{root}}products/{{slug}}/">{{name}}</a><span aria-hidden="true">/</span><span aria-current="page">{{page}}</span>
+      </div>
+      <h1>{{title}}</h1>
+    </header>
+
+    {{content}}
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="copyright">&copy; 2026 Dark Arbor Labs LLC &middot; All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
