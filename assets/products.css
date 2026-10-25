@@ -320,6 +320,7 @@
 .prose ul { padding-left: 1.25rem; margin-bottom: 0.9rem; }
 .prose strong { color: var(--ink); }
 .prose a { color: var(--ink); }
+.prose .lede { color: #c4c4c8; font-size: 1.1rem; }
 .prose .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.25rem; }
 
 @media (max-width: 760px) {
