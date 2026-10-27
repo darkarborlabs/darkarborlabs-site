@@ -205,6 +205,10 @@
 .shots.shots-tall img { aspect-ratio: 540 / 1174; }
 .shots.shots-five { grid-template-columns: repeat(5, 1fr); gap: 1rem; }
 
+/* Apple Watch screenshots: three across, squarer than the phone shots. */
+.shots.shots-watch { grid-template-columns: repeat(3, 1fr); max-width: 46rem; margin-bottom: 1.75rem; }
+.shots.shots-watch img { aspect-ratio: 416 / 496; border-radius: 28px; background: #000; }
+
 .shot-btn {
   display: block;
   width: 100%;
@@ -267,6 +271,7 @@
     -webkit-overflow-scrolling: touch;
   }
   .shots li { flex: 0 0 62%; max-width: 280px; scroll-snap-align: center; }
+  .shots.shots-watch li { flex: 0 0 44%; max-width: 190px; }
 }
 
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; counter-reset: step; list-style: none; }
