@@ -3,17 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ClipStitch | Dark Arbor Labs</title>
-  <meta name="description" content="ClipStitch: Your clips, in the order you want. A Dark Arbor Labs LLC app, expected Q1 2027.">
+  <title>ClipStitch: Combine Videos | Dark Arbor Labs</title>
+  <meta name="description" content="Pick your clips, drag them into order, and export one seamless video. ClipStitch is a simple video combiner for iPhone, iPad and Android. No account, no ads, all on your device.">
   <meta property="og:title" content="ClipStitch: Your clips, in the order you want.">
-  <meta property="og:description" content="A Dark Arbor Labs LLC app, expected Q1 2027.">
+  <meta property="og:description" content="Combine short video clips into one video. No timeline, no account, no ads, all on your device.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.darkarborlabs.com/products/clipstitch/">
+  <meta property="og:image" content="https://www.darkarborlabs.com/assets/products/clipstitch/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.darkarborlabs.com/products/clipstitch/">
+  <link rel="icon" type="image/webp" href="../../assets/products/clipstitch/icon.webp">
   <link rel="stylesheet" href="../../assets/site.css">
   <link rel="stylesheet" href="../../assets/products.css">
   <script src="../../assets/products.js" defer></script>
   <script src="../../assets/site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "ClipStitch: Combine Videos",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "iOS, Android",
+    "description": "Combine short video clips into one video, in the order you choose. No account, no ads, all on your device.",
+    "image": "https://www.darkarborlabs.com/assets/products/clipstitch/icon.webp",
+    "url": "https://www.darkarborlabs.com/products/clipstitch/",
+    "publisher": { "@type": "Organization", "name": "Dark Arbor Labs LLC", "url": "https://www.darkarborlabs.com" }
+  }
+  </script>
 </head>
 <body style="--product: #ff7a59">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,6 +48,8 @@
   </nav>
 
   <main class="container" id="main">
+
+    <!-- Hero -->
     <header class="product-hero">
       <div class="breadcrumb fade-up">
         <a href="../../products/">Products</a><span aria-hidden="true">/</span><span aria-current="page">ClipStitch</span>
@@ -41,19 +59,105 @@
           <img src="../../assets/products/clipstitch/icon.webp" alt="ClipStitch app icon" width="76" height="76">
           <div>
             <h1>ClipStitch</h1>
-            <p class="cat">Creativity</p>
+            <p class="cat">Combine Videos</p>
           </div>
         </div>
-        <p class="product-pitch">Your clips, in the order you want.</p>
+        <p class="product-pitch">Pick your clips, drag them into order, and export <strong>one seamless video</strong>. No timeline, no learning curve.</p>
         <p style="color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem;">The founder's daughter loves making toy play videos, but complex video editing apps got in her way. The clear gap was an easy way to combine clips in the order you want them. ClipStitch is perfect for her, and we hope for you!</p>
         <p class="status-line"><span class="status-badge">In development</span></p>
         <p style="color: var(--muted);">Expected Q1 2027.</p>
+        <div data-stores="clipstitch"></div>
       </div>
     </header>
+
+    <!-- Screenshots -->
+    <section id="screenshots" aria-labelledby="shots-h">
+      <p class="section-label" data-index="01">See it</p>
+      <h2 id="shots-h">Screenshots</h2>
+      <ul class="shots">
+        <li><img src="../../assets/products/clipstitch/screen-1.webp" alt="ClipStitch start screen: Stitch your clips into one video, with a Select videos button" width="540" height="960" loading="lazy"></li>
+        <li><img src="../../assets/products/clipstitch/screen-2.webp" alt="Four clips listed in order with drag handles, plus orientation and quality pickers" width="540" height="960" loading="lazy"></li>
+        <li><img src="../../assets/products/clipstitch/screen-3.webp" alt="A progress ring showing the video being stitched" width="540" height="960" loading="lazy"></li>
+        <li><img src="../../assets/products/clipstitch/screen-4.webp" alt="Your video is ready, with Play, Share and Stitch more videos buttons" width="540" height="960" loading="lazy"></li>
+      </ul>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" aria-labelledby="how-h">
+      <p class="section-label" data-index="02">How it works</p>
+      <h2 id="how-h">Select, order, stitch</h2>
+      <ol class="steps">
+        <li><h3>Select your videos</h3><p>Choose the clips you want from your library.</p></li>
+        <li><h3>Drag into order</h3><p>Use the handle on each clip to put them in the order you like.</p></li>
+        <li><h3>Tap Stitch</h3><p>ClipStitch combines them into one video and saves it for you.</p></li>
+      </ol>
+    </section>
+
+    <!-- Features -->
+    <section id="features" aria-labelledby="features-h">
+      <p class="section-label" data-index="03">Features</p>
+      <h2 id="features-h">Simple on purpose</h2>
+      <ul class="feature-list">
+        <li><strong>Your order, your way.</strong> Drag clips up and down, or remove the ones you don't want.</li>
+        <li><strong>Pick the quality.</strong> Export in 720p, 1080p or 4K, with a "best match" suggestion so you never upscale by accident.</li>
+        <li><strong>Mixed clips are fine.</strong> Combine portrait and landscape clips and choose the shape of the final video.</li>
+        <li><strong>Know the size first.</strong> See an estimated file size before you export.</li>
+        <li><strong>Keeps going in the background.</strong> Leave the app and get a notification when your video is ready.</li>
+        <li><strong>Private.</strong> Your videos are processed on your device and never uploaded.</li>
+      </ul>
+    </section>
+
+    <!-- Free vs Pro -->
+    <section id="versions" aria-labelledby="versions-h">
+      <p class="section-label" data-index="04">Free and Pro</p>
+      <h2 id="versions-h">Try it free, unlock it all with Pro</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>ClipStitch</h3>
+          <p>Free. Combine up to 2 clips and export at up to 720p HD.</p>
+        </div>
+        <div class="card">
+          <h3>ClipStitch Pro</h3>
+          <p>Unlimited clips and export up to 4K Ultra HD.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ideas -->
+    <section id="ideas" aria-labelledby="ideas-h">
+      <p class="section-label" data-index="05">Ideas to try</p>
+      <h2 id="ideas-h">What to stitch</h2>
+      <ul class="ideas">
+        <li>Toy play videos</li>
+        <li>Birthday moments</li>
+        <li>Vacation highlights</li>
+        <li>Sports plays</li>
+        <li>Recipe steps</li>
+        <li>School projects</li>
+        <li>Pet bloopers</li>
+        <li>Before and after</li>
+      </ul>
+    </section>
+
+    <!-- Privacy & support -->
+    <section id="support" aria-labelledby="support-h">
+      <p class="section-label" data-index="06">Privacy &amp; support</p>
+      <h2 id="support-h">No ads. No account. No tracking.</h2>
+      <div class="about-body">
+        <p style="color:var(--muted);line-height:1.75;max-width:42rem">ClipStitch collects nothing. Your videos are combined on your device and are never uploaded, so there's nothing to sign up for and nothing leaving your phone. Questions or ideas? Send them to the address below.</p>
+      </div>
+      <div class="link-row">
+        <a href="../../products/clipstitch/privacy/">Privacy policy</a>
+        <a href="../../products/clipstitch/support/">Support</a>
+        <a href="mailto:clipstitch@darkarborlabs.com?subject=ClipStitch">clipstitch@darkarborlabs.com</a>
+      </div>
+    </section>
+
   </main>
 
   <footer>
     <div class="container">
+      <p class="trademarks">App Store is a service mark of Apple Inc. iPhone and iPad are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. Android is a trademark of Google LLC.</p>
       <p class="copyright">&copy; 2026 Dark Arbor Labs LLC &middot; All rights reserved.</p>
     </div>
   </footer>
