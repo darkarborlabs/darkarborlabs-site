@@ -3,6 +3,22 @@
    Loaded as a plain script (not fetched) so it also works when a page is opened from disk. */
 window.DAL_PRODUCTS = [
   {
+    "slug": "biteybot",
+    "name": "BiteyBot",
+    "tagline": "Take a bite. Wake the bot.",
+    "summary": "A mealtime game for kids. A friendly robot waits for a bite, then celebrates with tricks. Built by parents who've tried every trick to get kids to eat. No ads, no account, works offline.",
+    "category": "Family",
+    "icon": "assets/products/biteybot/icon.webp",
+    "url": "products/biteybot/",
+    "status": "coming-soon",
+    "stores": {
+      "ios": {
+        "url": null,
+        "label": "iPhone & Apple Watch"
+      }
+    }
+  },
+  {
     "slug": "pickibot",
     "name": "PickiBot",
     "tagline": "Spin the wheel. Let the bot pick.",

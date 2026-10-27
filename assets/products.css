@@ -201,6 +201,10 @@
   box-shadow: 0 14px 30px rgba(0,0,0,0.4);
 }
 
+/* iPhone screenshots are taller than 9:16; five across on desktop. */
+.shots.shots-tall img { aspect-ratio: 540 / 1174; }
+.shots.shots-five { grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+
 .shot-btn {
   display: block;
   width: 100%;
