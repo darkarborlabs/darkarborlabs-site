@@ -58,7 +58,7 @@ window.DAL_PRODUCTS = [
     "slug": "sentryhub",
     "name": "Sentry Hub",
     "tagline": "Your Frigate cameras, in a native app.",
-    "summary": "A native client for Frigate NVR on iPhone, iPad, Mac and Android. Live video, a scrubbable timeline, smart alerts and face recognition, with a built-in demo so you can look around without a server.",
+    "summary": "A native client for Frigate NVR on iPhone, iPad, Mac and Android. Live video, a scrubbable timeline, face-aware alerts, Home Assistant buttons on every camera, and a built-in WireGuard tunnel for remote access. Try the demo without a server.",
     "category": "Utilities",
     "icon": "assets/products/sentryhub/icon.webp",
     "url": "products/sentryhub/",
