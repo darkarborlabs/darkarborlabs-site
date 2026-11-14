@@ -57,8 +57,8 @@ window.DAL_PRODUCTS = [
   {
     "slug": "sentryhub",
     "name": "Sentry Hub",
-    "tagline": "Your Frigate cameras, native on Apple.",
-    "summary": "A native client for Frigate NVR on iPhone, iPad and Mac. Live video, a scrubbable timeline, smart alerts and face recognition, with a built-in demo so you can look around without a server.",
+    "tagline": "Your Frigate cameras, in a native app.",
+    "summary": "A native client for Frigate NVR on iPhone, iPad, Mac and Android. Live video, a scrubbable timeline, smart alerts and face recognition, with a built-in demo so you can look around without a server.",
     "category": "Utilities",
     "icon": "assets/products/sentryhub/icon.webp",
     "url": "products/sentryhub/",
@@ -67,6 +67,9 @@ window.DAL_PRODUCTS = [
       "ios": {
         "url": null,
         "label": "iPhone, iPad & Mac"
+      },
+      "android": {
+        "url": null
       }
     }
   },
