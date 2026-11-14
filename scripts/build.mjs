@@ -38,10 +38,13 @@ function write(path, html) {
   console.log('wrote', path);
 }
 
-for (const slug of readdirSync(join(ROOT, 'content'))) {
+// skip Finder's .DS_Store and other dotfiles
+const listDir = (p) => readdirSync(join(ROOT, p)).filter((f) => !f.startsWith('.'));
+
+for (const slug of listDir('content')) {
   const product = products[slug];
   if (!product) throw new Error(`content/${slug}: no matching slug in assets/products.js`);
-  const pages = readdirSync(join(ROOT, 'content', slug)).map((f) => f.replace(/\.html$/, ''));
+  const pages = listDir(`content/${slug}`).map((f) => f.replace(/\.html$/, ''));
   const parsed = Object.fromEntries(pages.map((p) => [p, parse(`content/${slug}/${p}.html`)]));
 
   for (const page of pages) {
